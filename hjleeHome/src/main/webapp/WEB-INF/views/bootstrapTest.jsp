@@ -4,7 +4,6 @@
 <%@ page import = "java.util.*" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 <script
@@ -45,6 +44,7 @@
         </div>
       </div>
     </form>
+<form action="${pageContext.request.contextPath}/logout" method="POST"> <input type="submit" value="로그아웃" /> </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
