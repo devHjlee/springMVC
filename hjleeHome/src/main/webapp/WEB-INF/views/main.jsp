@@ -4,24 +4,26 @@
 <%@ page import = "java.util.*" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 	<title>Home</title>
-  <title>SB Admin - Dashboard</title>
+  	<title>SB Admin - Dashboard</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<!-- Custom fonts for this template-->
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-  <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	<!-- Page level plugin CSS-->
+	<link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
+	<!-- Custom styles for this template-->
+	<link href="css/sb-admin.css" rel="stylesheet">
 </head>
-
-
 
 <body id="page-top">
 
@@ -44,7 +46,6 @@
         </div>
       </div>
     </form>
-<form action="${pageContext.request.contextPath}/logout" method="POST"> <input type="submit" value="로그아웃" /> </form>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -97,6 +98,7 @@
           <span>Dashboard</span>
         </a>
       </li>
+      <%-- <sec:authorize access="isAnonymous()"> --%>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
@@ -104,7 +106,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login.html">Login</a>
+          <a class="dropdown-item" href='<c:url value="/comm/login"/>'>Login</a>
           <a class="dropdown-item" href="register.html">Register</a>
           <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
           <div class="dropdown-divider"></div>
@@ -113,13 +115,14 @@
           <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
       </li>
+      <%-- </sec:authorize> --%>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href='<c:url value="/admin/admin"/>'>
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href='<c:url value="/board/board"/>'>
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
@@ -751,7 +754,7 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <!-- <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -769,26 +772,6 @@
   <script src="js/demo/datatables-demo.js"></script>
   <script src="js/demo/chart-area-demo.js"></script>
 
-<P>  The time on the server is ${serverTime}. </P>
-<button id="start_ajax">ddd</button>
-<p></p>
 </body>
-<script>
-$("#start_ajax").click(function(){
-    $.ajax({
-        type:"POST",
-        url:"/apiSend",
-        data : {name : "asdasd"},
-        dataType : "json",
-        success: function(data){
-            console.log(data);
-        },
-        error: function(xhr, status, error) {
-            alert(error);
-        }  
-    });
-});
-
-</script>
 
 </html>

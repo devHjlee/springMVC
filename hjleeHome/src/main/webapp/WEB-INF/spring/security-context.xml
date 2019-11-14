@@ -8,19 +8,28 @@
 			           http://www.springframework.org/schema/security
 			           http://www.springframework.org/schema/security/spring-security-4.2.xsd">
            
- 	<http>
-		<intercept-url pattern="/**" access="hasRole('USER')" />
-		<form-login/>
+	<http auto-config="true" use-expressions="true">
+	    <intercept-url pattern="/board/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+	    <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+	    <intercept-url pattern="/**" access="permitAll"/>
+	    <form-login
+	        username-parameter="userId"
+	        password-parameter="usePwd"
+	        login-processing-url="/login"
+	        login-page="/comm/login"
+	        default-target-url="/"
+	    />
+
 	</http>
 
 	<!-- provider -->
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="user" password="password" authorities="ROLE_USER" />
-				<user name="guest" password="guest" authorities="ROLE_GUEST"/>
-			</user-service>
-		</authentication-provider>
+	    <authentication-provider>
+	        <user-service>
+	            <user name="user" password="userPw" authorities="ROLE_USER"/>
+	            <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+	        </user-service>
+	    </authentication-provider>
 	</authentication-manager>
 
 </beans:beans>
