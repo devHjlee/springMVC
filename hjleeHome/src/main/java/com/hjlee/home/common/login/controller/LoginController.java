@@ -25,12 +25,12 @@ public class LoginController {
 	public String login(HttpServletRequest request,Principal principal,Authentication authentication) {
 		logger.info("Login Controller!");
 		logger.info("getSession:"+request.getSession().toString());
-		logger.info("getAttributeNames:"+request.getAttributeNames());
+/*		logger.info("getAttributeNames:"+request.getAttributeNames());
 		logger.info("principal.getName():"+principal.getName());
 		logger.info("authentication.getPrincipal():"+authentication.getPrincipal());
-		logger.info("authentication.getDetails().toString():"+authentication.getDetails().toString());
+		logger.info("authentication.getDetails().toString():"+authentication.getDetails().toString());*/
 		
-		return "/comm/login";
+		return "/login";
 	}
 	
 }
