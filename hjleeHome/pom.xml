@@ -98,7 +98,12 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
+		<!-- log4j-remix -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+		        <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>

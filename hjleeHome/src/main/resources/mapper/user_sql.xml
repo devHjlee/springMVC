@@ -2,8 +2,8 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="userInfo">
+<!-- <mapper namespace="userInfo">
 	<select id="selectUserById" resultType="com.hjlee.home.security.vo.UserDetailsVO">
-		SELECT USER_ID as userId, USER_PASSWORD as userPwd FROM USER_TB WHERE USER_ID = #{ userId} 
+		SELECT USER_ID as userId, USER_PASSWORD as loginPwd, ENABLED FROM USER_TB WHERE USER_ID=#{ userId}
 	</select>
-</mapper> 
+</mapper>  -->
