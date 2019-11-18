@@ -28,7 +28,7 @@
         	logout-url="/logout"
         	logout-success-url="/"
    		 />
-
+		<security:access-denied-handler error-page="/comm/access_denied_page"/>
 	</security:http>
 
 	<!-- provider -->

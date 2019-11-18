@@ -25,12 +25,14 @@ public class LoginController {
 	public String login(HttpServletRequest request,Principal principal,Authentication authentication) {
 		logger.info("Login Controller!");
 		logger.info("getSession:"+request.getSession().toString());
-/*		logger.info("getAttributeNames:"+request.getAttributeNames());
-		logger.info("principal.getName():"+principal.getName());
-		logger.info("authentication.getPrincipal():"+authentication.getPrincipal());
-		logger.info("authentication.getDetails().toString():"+authentication.getDetails().toString());*/
-		
+
 		return "/login";
 	}
-	
+	@RequestMapping(value = "/comm/access_denied_page")
+	public String accessDenied(HttpServletRequest request,Principal principal,Authentication authentication) {
+		logger.info("accessDenied!");
+		logger.info("getSession:"+request.getSession().toString());
+
+		return "/error/error403";
+	}
 }

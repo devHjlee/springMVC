@@ -36,16 +36,17 @@
 			 <!-- Breadcrumbs-->
 			 <ol class="breadcrumb">
 			   <li class="breadcrumb-item">
-			     <a href="index.html">Dashboard</a>
+			     <a href="/">Home</a>
 			   </li>
-			   <li class="breadcrumb-item active">Blank Page</li>
+			   <li class="breadcrumb-item active">접근이 거부되었습니다.</li>
 			 </ol>
 			
 			 <!-- Page Content -->
-			  <h1>Admin Page</h1>
+			  <h1>403</h1>
 			  <hr>
-			  <p>This is a great starting point for new custom pages.</p>
-			
+			  <p>권한이 없어서 접근이 불가능합니다.</p>
+			  <p>관리자에게 문의바랍니다.</p>
+
 			</div>
 			<!-- /.container-fluid -->
 
@@ -66,13 +67,16 @@
 	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 	
 	<!-- Page level plugin JavaScript-->
-	<!-- <script src="../vendor/chart.js/Chart.min.js"></script> -->
+	<script src="../vendor/chart.js/Chart.min.js"></script>
 	<script src="../vendor/datatables/jquery.dataTables.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 	
 	<!-- Custom scripts for all pages-->
 	<script src="../js/sb-admin.min.js"></script>
 	
+	<!-- Demo scripts for this page-->
+	<script src="../js/demo/datatables-demo.js"></script>
+	<script src="../js/demo/chart-area-demo.js"></script>
 </body>
 
 </html>
