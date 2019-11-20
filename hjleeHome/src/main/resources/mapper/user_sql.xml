@@ -2,8 +2,22 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- <mapper namespace="userInfo">
-	<select id="selectUserById" resultType="com.hjlee.home.security.vo.UserDetailsVO">
-		SELECT USER_ID as userId, USER_PASSWORD as loginPwd, ENABLED FROM USER_TB WHERE USER_ID=#{ userId}
+<mapper namespace="userInfo">
+	<select id="selectUserById" resultType="com.hjlee.home.security.vo.CustomUserDetails">
+		SELECT 
+			USER_ID as ID
+			,USER_PASSWORD as PASSWORD
+			,AUTHORITY
+			,ENABLED
+		FROM USER_TB 
+		WHERE USER_ID = #{ userId} 
 	</select>
-</mapper>  -->
+
+	<insert id="insertUserInfo" parameterType="com.hjlee.home.security.vo.CustomUserDetails">
+		INSERT INTO USER_TB 
+		(USER_ID,USER_NAME,USER_PASSWORD,AUTHORITY)
+		VALUES
+		(#{ID},#{PASSWORD},#{NAME},'ROLE_USER')
+	</insert>
+
+</mapper> 

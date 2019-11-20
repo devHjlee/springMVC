@@ -45,7 +45,8 @@
           <a class="dropdown-item" href="#">Activity Log</a>
           <div class="dropdown-divider"></div>
           <sec:authorize access="isAnonymous()">
-          <a class="dropdown-item" href="/comm/login">Login</a>
+          <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/register">Register</a>
           </sec:authorize>
           <sec:authorize access="isAuthenticated()">
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>

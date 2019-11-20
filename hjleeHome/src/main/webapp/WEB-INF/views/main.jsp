@@ -27,9 +27,9 @@
 
 <body id="page-top">
 
-	<jsp:include page="/WEB-INF/views/comm/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 	<div id="wrapper">
-	<jsp:include page="/WEB-INF/views/comm/menu.jsp"/>
+	<jsp:include page="/WEB-INF/views/include/menu.jsp"/>
 		<div id="content-wrapper">
 			<div class="container-fluid">
 			
@@ -616,14 +616,14 @@
 	     <!-- /.container-fluid -->
 	
 	     <!-- Sticky Footer -->
-		<jsp:include page="/WEB-INF/views/comm/footer.jsp"/>	
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"/>	
 		</div>
 	   <!-- /.content-wrapper -->
 	
 	</div>
 	<!-- /#wrapper -->
 
-	<jsp:include page="/WEB-INF/views/comm/logoutmodal.jsp"/>
+	<jsp:include page="/WEB-INF/views/include/logoutmodal.jsp"/>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>

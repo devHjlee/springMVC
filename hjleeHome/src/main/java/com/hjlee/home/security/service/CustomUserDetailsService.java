@@ -21,16 +21,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		logger.debug("loadUserByUsername ::::::: 2");
-		
+		logger.info("loadUserByUsername START!!!");
 		CustomUserDetails user = userAuthDAO.getUserById(username);
 
 		if(user==null) {
-			logger.debug("no user :::::::: AuthenticationProvider");
-			throw new InternalAuthenticationServiceException(username);
+			throw new InternalAuthenticationServiceException(username+"정보를 찾을 수 없습니다.");
 		}
-
+		logger.info("loadUserByUsername END!!!");
 		return user;
 	}
 

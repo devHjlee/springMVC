@@ -12,25 +12,34 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<context:component-scan base-package="com.hjlee"/>
+
 	<bean id="userAuthProvider" class="com.hjlee.home.security.CustomAuthenticationProvider"/>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 	<security:http auto-config="true" use-expressions="true">
-	    <security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+
+	    <security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/> <!-- 권한별 접근 가능한 url 등록 -->
 	    <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-	    <security:intercept-url pattern="/**" access="permitAll"/>
+	    <security:intercept-url pattern="/**" access="permitAll"/> <!-- 모든사용자 접근 가능 -->
+
 	    <security:form-login
 	        username-parameter="userId"
 	        password-parameter="usePwd"
 	        login-processing-url="/login"
-	        login-page="/comm/login"
+	        login-page="/login"
 	        default-target-url="/"
 	    />
 		<security:logout
         	logout-url="/logout"
         	logout-success-url="/"
    		 />
-		<security:access-denied-handler error-page="/comm/access_denied_page"/>
+		<security:access-denied-handler error-page="/access_denied_page"/>
 	</security:http>
+
+	<!-- custom AuthenticationProvider-->
+	<security:authentication-manager>
+	    <security:authentication-provider ref="userAuthProvider"/>
+	</security:authentication-manager>
 
 	<!-- 인메모리인증 -->
 <!-- 	<security:authentication-manager>
@@ -52,8 +61,4 @@
 	    </security:authentication-provider>
 	</security:authentication-manager> -->
 
-	<!-- custom AuthenticationProvider-->
-	<security:authentication-manager>
-	    <security:authentication-provider ref="userAuthProvider"/>
-	</security:authentication-manager>
 </beans>

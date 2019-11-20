@@ -24,8 +24,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	private CustomUserDetailsService userDeSer;
 	
-	//@Autowired
-	//private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -33,7 +33,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		String username = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
-		
+
 		logger.debug("AuthenticationProvider :::::: 1");
 		userDeSer.loadUserByUsername(username);
 		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(username);
@@ -47,14 +47,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		logger.debug("AuthenticationProvider loadUserByUsername :::::: 3");
 		
-/*		if(!passwordEncoder.matches(password, user.getPassword())) {
-			logger.debug("matchPassword :::::::: false!");
-			throw new BadCredentialsException(username);
-		}*/
-		if(!password.equals(user.getPassword())) {
+		if(!passwordEncoder.matches(password, user.getPassword())) {
 			logger.debug("matchPassword :::::::: false!");
 			throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
 		}
+/*		if(!password.equals(user.getPassword())) {
+			logger.debug("matchPassword :::::::: false!");
+			throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
+		}*/
 		logger.debug("matchPassword :::::::: true!");
 
 		return new UsernamePasswordAuthenticationToken(username, password, authorities);
