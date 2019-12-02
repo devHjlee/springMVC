@@ -22,37 +22,36 @@
 	<link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 	<!-- Custom styles for this template-->
-	<link href="../css/sb-admin.css" rel="stylesheet">
+	<link href="../css/sb-admin-2.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
-
-	<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 	<div id="wrapper">
 	<jsp:include page="/WEB-INF/views/include/menu.jsp"/>
-		<div id="content-wrapper">
-			<div class="container-fluid">
-			
-			 <!-- Breadcrumbs-->
-			 <ol class="breadcrumb">
-			   <li class="breadcrumb-item">
-			     <a href="index.html">Dashboard</a>
-			   </li>
-			   <li class="breadcrumb-item active">Blank Page</li>
-			 </ol>
-			
-			 <!-- Page Content -->
-			  <h1>Board Page</h1>
-			  <hr>
-			  <p>This is a great starting point for new custom pages.</p>
-			
-			</div>
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+			<jsp:include page="/WEB-INF/views/include/header.jsp"/>
+				<div class="container-fluid">
+					
+					<!-- Breadcrumbs-->
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item">
+					    <a href="/">Dashboard</a>
+					  </li>
+					  <li class="breadcrumb-item active">board Page</li>
+					</ol>
+					
+					<!-- Page Content -->
+					<h1>Board Page</h1>
+					<hr>
+					<p>This is a great starting point for new custom pages.</p>
+				</div>
 			<!-- /.container-fluid -->
 
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"/>	
-		</div>
+			</div>
+			<jsp:include page="/WEB-INF/views/include/footer.jsp"/>	
 	   <!-- /.content-wrapper -->
-	
+		</div>
 	</div>
 	<!-- /#wrapper -->
 
@@ -66,13 +65,15 @@
 	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 	
 	<!-- Page level plugin JavaScript-->
-	<script src="../vendor/chart.js/Chart.min.js"></script>
+	<!-- <script src="../vendor/chart.js/Chart.min.js"></script> -->
 	<script src="../vendor/datatables/jquery.dataTables.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 	
 	<!-- Custom scripts for all pages-->
-	<script src="../js/sb-admin.min.js"></script>
-	
+	<script src="../js/sb-admin-2.min.js"></script>
+	<script type="text/javascript">
+
+	</script>
 </body>
 
 </html>

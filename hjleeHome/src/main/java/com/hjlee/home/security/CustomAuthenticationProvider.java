@@ -31,38 +31,28 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
-		String username = (String) authentication.getPrincipal();
+		String userId = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
 
-		logger.debug("AuthenticationProvider :::::: 1");
-		userDeSer.loadUserByUsername(username);
-		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(username);
-		
+		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(userId);
+
 		if(!user.isEnabled()) {
-			logger.debug("isEnabled or isCredentialsNonExpired :::::::: false!");
 			throw new AuthenticationCredentialsNotFoundException("잠긴 사용자 입니다.");
 		}
-		
+
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
-		
-		logger.debug("AuthenticationProvider loadUserByUsername :::::: 3");
-		
+
 		if(!passwordEncoder.matches(password, user.getPassword())) {
-			logger.debug("matchPassword :::::::: false!");
 			throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
 		}
-/*		if(!password.equals(user.getPassword())) {
-			logger.debug("matchPassword :::::::: false!");
-			throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
-		}*/
-		logger.debug("matchPassword :::::::: true!");
 
-		return new UsernamePasswordAuthenticationToken(username, password, authorities);
+		logger.info("userVO:"+user.toString());
+		return new UsernamePasswordAuthenticationToken(user, password, authorities);
 	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		return true;
+		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
 
 }

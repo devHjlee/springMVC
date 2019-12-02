@@ -30,7 +30,7 @@ public class BoardController {
 		logger.info("principal.getName():"+principal.getName());
 		logger.info("authentication.getPrincipal():"+authentication.getPrincipal());
 		logger.info("authentication.getDetails().toString():"+authentication.getDetails().toString());
-
+		logger.info("csrf:"+request.getAttribute("_csrf"));
 		return "/board/board";
 	}
 	

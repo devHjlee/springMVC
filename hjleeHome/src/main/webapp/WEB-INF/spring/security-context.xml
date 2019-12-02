@@ -24,7 +24,7 @@
 
 	    <security:form-login
 	        username-parameter="userId"
-	        password-parameter="usePwd"
+	        password-parameter="userPwd"
 	        login-processing-url="/login"
 	        login-page="/login"
 	        default-target-url="/"

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.hjlee.home.security.vo.CustomUserDetails;
 
-@Repository("userAuthDAO")
-public class UserAuthDAO {
+@Repository("customUserDAO")
+public class CustomUserDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -15,7 +15,10 @@ public class UserAuthDAO {
 	public CustomUserDetails getUserById(String username) {
 		return sqlSession.selectOne("userInfo.selectUserById", username);
 	}
-
+	
+	public int joinUser(CustomUserDetails user) throws Exception{
+		return sqlSession.insert("userInfo.joinUser",user);
+	}
 /*	public void updateFailureCount(String username) {
 		sqlSession.update("user.updateFailureCount", username);
 	}

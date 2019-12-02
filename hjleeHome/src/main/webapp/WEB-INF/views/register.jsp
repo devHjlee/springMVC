@@ -16,59 +16,60 @@
 	<link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 	<!-- Custom styles for this template-->
-	<link href="../css/sb-admin.css" rel="stylesheet">
+	<link href="../css/sb-admin-2.css" rel="stylesheet">
 </head>
 
-<body class="bg-dark">
-
+<body class="bg-gradient-primary">
 	<div class="container">
-		<div class="card card-register mx-auto mt-5">
-		  <div class="card-header">Register an Account</div>
-		  <div class="card-body">
-		    <form>
-		      <div class="form-group">
-		        <div class="form-row">
-		          <div class="col-md-6">
-		            <div class="form-label-group">
-		              <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-		              <label for="firstName">First name</label>
-		            </div>
+		<div class="card o-hidden border-0 shadow-lg my-5">
+		  <div class="card-body p-0">
+		    <!-- Nested Row within Card Body -->
+		    <div class="row">
+		      <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+		      <div class="col-lg-7">
+		        <div class="p-5">
+		          <div class="text-center">
+		            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
 		          </div>
-		          <div class="col-md-6">
-		            <div class="form-label-group">
-		              <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
-		              <label for="lastName">Last name</label>
+		          <form class="user" id="registerForm" action="/register" method="post">
+		            <div class="form-group row">
+		              <div class="col-sm-6 mb-3 mb-sm-0">
+		                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+		              </div>
+		              <div class="col-sm-6">
+		                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+		              </div>
 		            </div>
+		            <div class="form-group">
+		              <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+		            </div>
+		            <div class="form-group row">
+		              <div class="col-sm-6 mb-3 mb-sm-0">
+		                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+		              </div>
+		              <div class="col-sm-6">
+		                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+		              </div>
+		            </div>
+				    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+				    <a id="registerBtn" class="btn btn-primary btn-user btn-block" href="#">Register Account</a>
+		            <hr>
+		            <a href="index.html" class="btn btn-google btn-user btn-block">
+		              <i class="fab fa-google fa-fw"></i> Register with Google
+		            </a>
+		            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+		              <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+		            </a>
+		          </form>
+		          <hr>
+		          <div class="text-center">
+		            <a class="small" href="forgot-password.html">Forgot Password?</a>
+		          </div>
+		          <div class="text-center">
+		            <a class="small" href="login.html">Already have an account? Login!</a>
 		          </div>
 		        </div>
 		      </div>
-		      <div class="form-group">
-		        <div class="form-label-group">
-		          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-		          <label for="inputEmail">Email address</label>
-		        </div>
-		      </div>
-		      <div class="form-group">
-		        <div class="form-row">
-		          <div class="col-md-6">
-		            <div class="form-label-group">
-		              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-		              <label for="inputPassword">Password</label>
-		            </div>
-		          </div>
-		          <div class="col-md-6">
-		            <div class="form-label-group">
-		              <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-		              <label for="confirmPassword">Confirm password</label>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		      <a class="btn btn-primary btn-block" href="login.html">Register</a>
-		    </form>
-		    <div class="text-center">
-		      <a class="d-block small mt-3" href="/comm/login">Login Page</a>
-		      <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
 		    </div>
 		  </div>
 		</div>
@@ -82,8 +83,8 @@
 	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('#loginBtn').click(function(){
-			$("#loginForm").submit();
+		$('#registerBtn').click(function(){
+			$("#registerForm").submit();
 		});
 	});
 	</script>
