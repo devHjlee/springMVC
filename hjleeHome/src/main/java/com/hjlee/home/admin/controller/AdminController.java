@@ -38,5 +38,5 @@ public class AdminController {
 		//logger.info("aaa"+vo.toString());
 		return "/admin/admin";
 	}
-	
+
 }

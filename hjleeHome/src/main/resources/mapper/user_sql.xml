@@ -15,7 +15,7 @@
 		WHERE USER_ID = #{ userid} 
 	</select>
 
-	<insert id="joinUser" parameterType="com.hjlee.home.security.vo.CustomUserDetails">
+	<insert id="insertUserInfo" parameterType="com.hjlee.home.security.vo.CustomUserDetails">
 		INSERT INTO USER_TB 
 		(USER_ID,USER_NAME,USER_PASSWORD,AUTHORITY,EMAIL)
 		VALUES

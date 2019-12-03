@@ -22,38 +22,31 @@
 	<link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 	<!-- Custom styles for this template-->
-	<link href="../css/sb-admin.css" rel="stylesheet">
+	<link href="../css/sb-admin-2.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
-
-	<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 	<div id="wrapper">
 	<jsp:include page="/WEB-INF/views/include/menu.jsp"/>
-		<div id="content-wrapper">
-			<div class="container-fluid">
-			
-			 <!-- Breadcrumbs-->
-			 <ol class="breadcrumb">
-			   <li class="breadcrumb-item">
-			     <a href="/">Home</a>
-			   </li>
-			   <li class="breadcrumb-item active">접근이 거부되었습니다.</li>
-			 </ol>
-			
-			 <!-- Page Content -->
-			  <h1>403</h1>
-			  <hr>
-			  <p>권한이 없어 접근이 불가능합니다.</p>
-			  <p>관리자에게 문의바랍니다.</p>
-
-			</div>
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+			<jsp:include page="/WEB-INF/views/include/header.jsp"/>
+				<div class="container-fluid">
+					
+					<!-- 403 Error Text -->
+					<div class="text-center">
+						<div class="error mx-auto" data-text="404">403</div>
+						<p class="lead text-gray-800 mb-5">권한이 없습니다.</p>
+						<p class="lead text-gray-800 mb-5">관리자에게 문의 바랍니다.</p>
+						<a href="/">&larr; Back to Dashboard</a>
+					</div>
+				</div>
 			<!-- /.container-fluid -->
 
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"/>	
-		</div>
+			</div>
+			<jsp:include page="/WEB-INF/views/include/footer.jsp"/>	
 	   <!-- /.content-wrapper -->
-	
+		</div>
 	</div>
 	<!-- /#wrapper -->
 
@@ -67,16 +60,15 @@
 	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 	
 	<!-- Page level plugin JavaScript-->
-	<script src="../vendor/chart.js/Chart.min.js"></script>
+	<!-- <script src="../vendor/chart.js/Chart.min.js"></script> -->
 	<script src="../vendor/datatables/jquery.dataTables.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 	
 	<!-- Custom scripts for all pages-->
-	<script src="../js/sb-admin.min.js"></script>
-	
-	<!-- Demo scripts for this page-->
-	<script src="../js/demo/datatables-demo.js"></script>
-	<script src="../js/demo/chart-area-demo.js"></script>
+	<script src="../js/sb-admin-2.min.js"></script>
+	<script type="text/javascript">
+
+	</script>
 </body>
 
 </html>

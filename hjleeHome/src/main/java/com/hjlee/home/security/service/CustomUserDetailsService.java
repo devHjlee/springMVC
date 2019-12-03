@@ -13,22 +13,22 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hjlee.home.security.dao.CustomUserDAO;
 import com.hjlee.home.security.vo.CustomUserDetails;
 
+@Transactional
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
-	
+
 	@Autowired
 	private CustomUserDAO userAuthDAO;
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
-    @Transactional
-    public Integer joinUser(CustomUserDetails user) throws Exception{
+	public Integer insertUserInfo(CustomUserDetails user) throws Exception{
         // 비밀번호 암호화
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        return userAuthDAO.joinUser(user);
+        return userAuthDAO.insertUserInfo(user);
     }
 
 	@Override

@@ -16,8 +16,8 @@ public class CustomUserDAO {
 		return sqlSession.selectOne("userInfo.selectUserById", username);
 	}
 	
-	public int joinUser(CustomUserDetails user) throws Exception{
-		return sqlSession.insert("userInfo.joinUser",user);
+	public int insertUserInfo(CustomUserDetails user) throws Exception{
+		return sqlSession.insert("userInfo.insertUserInfo",user);
 	}
 /*	public void updateFailureCount(String username) {
 		sqlSession.update("user.updateFailureCount", username);

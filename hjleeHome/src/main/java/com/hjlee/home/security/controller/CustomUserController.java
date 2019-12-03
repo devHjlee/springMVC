@@ -57,9 +57,10 @@ public class CustomUserController {
 	}
 
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String joinUser(CustomUserDetails user) throws Exception{
+	public String userRegister(CustomUserDetails user) throws Exception{
 
-		userService.joinUser(user);
+		int result = userService.insertUserInfo(user);
+		logger.info("register Result:"+result);
 
 		return "redirect:/login";
 	}
