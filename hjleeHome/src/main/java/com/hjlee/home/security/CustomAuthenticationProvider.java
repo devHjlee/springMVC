@@ -31,10 +31,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
-		String userId = (String) authentication.getPrincipal();
+		String email = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
 
-		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(userId);
+		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(email);
 
 		if(!user.isEnabled()) {
 			throw new AuthenticationCredentialsNotFoundException("잠긴 사용자 입니다.");

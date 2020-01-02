@@ -5,21 +5,27 @@
 <mapper namespace="userInfo">
 	<select id="selectUserById" resultType="com.hjlee.home.security.vo.CustomUserDetails">
 		SELECT 
-			USER_ID as userId
+			EMAIL as email
 			,USER_PASSWORD as password
 			,USER_NAME AS userName
 			,AUTHORITY as authorities
 			,ENABLED as enabled
-			,EMAIL as email
 		FROM USER_TB 
-		WHERE USER_ID = #{ userid} 
+		WHERE EMAIL = #{ email} 
+	</select>
+
+	<select id="selectUserByEmail" resultType="java.lang.Integer">
+		SELECT 
+			COUNT(*) AS CNT
+		FROM USER_TB 
+		WHERE EMAIL = #{ email} 
 	</select>
 
 	<insert id="insertUserInfo" parameterType="com.hjlee.home.security.vo.CustomUserDetails">
 		INSERT INTO USER_TB 
-		(USER_ID,USER_NAME,USER_PASSWORD,AUTHORITY,EMAIL)
+		(USER_NAME,USER_PASSWORD,AUTHORITY,EMAIL)
 		VALUES
-		(#{userid},#{username},#{password},'ROLE_USER',#{email})
+		(#{username},#{password},'ROLE_USER',#{email})
 	</insert>
 
 </mapper> 

@@ -23,7 +23,7 @@
 	    <security:intercept-url pattern="/**" access="permitAll"/> <!-- 모든사용자 접근 가능 -->
 
 	    <security:form-login
-	        username-parameter="userId"
+	        username-parameter="email"
 	        password-parameter="userPwd"
 	        login-processing-url="/login"
 	        login-page="/login"

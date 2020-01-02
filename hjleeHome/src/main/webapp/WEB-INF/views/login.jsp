@@ -39,7 +39,7 @@
 			            </div>
 			            <form class="user" id="loginForm" action="/login" method="post">
 							<div class="form-group">
-							    <input type="text" name="userId" class="form-control" placeholder="ID" required="required">
+							    <input type="text" name="email" class="form-control" placeholder="Email" required="required">
 							</div>
 							<div class="form-group">
 							  <input type="password" name="userPwd" class="form-control" placeholder="Password" required="required">

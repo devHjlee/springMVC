@@ -31,6 +31,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userAuthDAO.insertUserInfo(user);
     }
 
+	public Integer getUserByEmail(String email) throws Exception{
+        return userAuthDAO.getUserByEmail(email);
+    }
+
 	@Override
 	public CustomUserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		logger.info("loadUserByUsername START!!!");

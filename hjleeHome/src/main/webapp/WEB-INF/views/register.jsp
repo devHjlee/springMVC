@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%> 
-<%request.setCharacterEncoding("utf-8");%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%response.setContentType("text/html; charset=utf-8"); %>
 <%@ page import = "java.util.*" %>
 
@@ -8,7 +7,10 @@
 <head>
 	<title>Home</title>
  	<title>SB Admin - Dashboard</title>
-
+	<!-- ajax 통신을 위한 meta tag -->
+	<meta name="_csrf" content="${_csrf.token}">
+	<meta name="_csrf_header" content="${_csrf.headerName}">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!-- Custom fonts for this template-->
 	<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -31,24 +33,21 @@
 		          <div class="text-center">
 		            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
 		          </div>
-		          <form class="user" id="registerForm" action="/register" method="post">
+		          <form class="user" id="registerForm" action="/register" method="post" accept-charset="utf-8">
 		            <div class="form-group row">
-		              <div class="col-sm-6 mb-3 mb-sm-0">
-		                <input type="text" class="form-control form-control-user" name="userid" placeholder="First Name">
-		              </div>
-		              <div class="col-sm-6">
-		                <input type="text" class="form-control form-control-user" name="username" placeholder="Last Name">
+		              <div class="col-sm-12 mb-3 mb-sm-0">
+		                <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Name">
 		              </div>
 		            </div>
 		            <div class="form-group">
-		              <input type="email" class="form-control form-control-user" name="email" placeholder="Email Address">
+		              <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address">
 		            </div>
 		            <div class="form-group row">
 		              <div class="col-sm-6 mb-3 mb-sm-0">
-		                <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
+		                <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
 		              </div>
 		              <div class="col-sm-6">
-		                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+		                <input type="password" class="form-control form-control-user" id="repeatPassword" placeholder="Repeat Password">
 		              </div>
 		            </div>
 				    <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
@@ -84,7 +83,51 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#registerBtn').click(function(){
-			$("#registerForm").submit();
+			var regExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			var chkName = document.getElementById('username').value;
+			var chkEmail = document.getElementById('email').value;
+			var chkPwd = document.getElementById('password').value;
+			var chkRPwd = document.getElementById('repeatPassword').value;
+
+			if(chkName.trim() == ''){
+				alert('이름을 입력해 주세요.');
+				return false;
+			}
+			if (chkEmail == '' || !regExp.test(chkEmail)) {
+				alert("올바른 이메일 주소를 입력하세요");
+				return false;
+			}
+			if(chkPwd != chkRPwd){
+				alert('비밀번호가 일치하지 않습니다.');
+				return false;
+			}
+			var csrfChk = $("${_csrf.parameterName}").val();
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			var jsonData = {"email":chkEmail,"username":"이형재"};
+
+			$.ajax({
+				type: 'POST',
+				contentType: "application/json; charset=utf-8;",
+				url:'/emailChk',
+				data: JSON.stringify(jsonData), // String -> json 형태로 변환
+				beforeSend : function(xhr){   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+					xhr.setRequestHeader(header, token);
+	            },
+				dataType: 'json', // success 시 받아올 데이터 형
+				async: false, //동기, 비동기 여부
+				cache :false, // 캐시 여부
+				success: function(data){
+					if(data.result == "fail"){
+						alert('email이 존재합니다.');
+					}else{
+						$("#registerForm").submit();
+					}
+				},
+				error:function(xhr,status,error){
+					console.log('xhr:'+xhr+'status:'+status+'error:'+error);
+				}
+			});
 		});
 	});
 	</script>
