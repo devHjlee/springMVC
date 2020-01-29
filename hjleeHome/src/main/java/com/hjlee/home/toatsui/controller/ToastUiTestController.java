@@ -22,7 +22,7 @@ public class ToastUiTestController {
 	public String toastUiGrid(HttpServletRequest request) {
 		logger.info("Toast Ui Grid Get");
 		request.getSession().setAttribute("test", "dlgudwo");
-		return "/toastui/toastUiGrid";
+		return "/dev/toastui/toastUiGrid";
 		//return "/board/board";
 	}
 
