@@ -13,7 +13,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-	<title>Home</title>
   	<title>TOAST UI GRID TEST PAGE</title>
   	<link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
 	<!-- Custom fonts for this template-->

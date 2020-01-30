@@ -48,7 +48,7 @@
             <h6 class="collapse-header">TOAST UI:</h6>
             <a class="collapse-item" href="/toast/grid">Grid</a>
             <h6 class="collapse-header">PDF BOX:</h6>
-            <a class="collapse-item" href="/pdfbox/merge">Grid</a>
+            <a class="collapse-item" href="/pdfbox/merge">PDF Merge</a>
 <!--             <a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a> -->
