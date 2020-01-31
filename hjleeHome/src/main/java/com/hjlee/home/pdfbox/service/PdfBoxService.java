@@ -17,35 +17,35 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class PdfBoxService {
 
-  @Autowired
-  private Environment env;
-  private static final Logger logger = LoggerFactory.getLogger(PdfBoxService.class);
+    @Autowired
+    private Environment env;
+    private static final Logger logger = LoggerFactory.getLogger(PdfBoxService.class);
 
-  public String pdfMerge(List<MultipartFile> files) throws IOException {
+    public String pdfMerge(List<MultipartFile> files) throws IOException {
 
-    String filePath = env.getProperty("file.tempPath");
+        String filePath = env.getProperty("file.tempPath");
 
-    PDDocument pdfDoc = null;
-    PDFMergerUtility PDFmerger = new PDFMergerUtility();
-    PDFmerger.setDestinationFileName(env.getProperty("file.pdfMergePath") + "/test.pdf");
+        PDDocument pdfDoc = null;
+        PDFMergerUtility PDFmerger = new PDFMergerUtility();
+        PDFmerger.setDestinationFileName(env.getProperty("file.pdfMergePath") + "/test.pdf");
 
-    File file = new File(filePath);
-    // 파일이 없다면 디렉토리를 생성
-    if (file.exists() == false) {
-      file.mkdirs();
+        File file = new File(filePath);
+        // 파일이 없다면 디렉토리를 생성
+        if (file.exists() == false) {
+            file.mkdirs();
+        }
+
+        for (MultipartFile i : files) {
+            // 파일 업로드 소스 여기에 삽입
+            file = new File(filePath + i.getOriginalFilename());
+            i.transferTo(file);
+            pdfDoc = PDDocument.load(file);
+            PDFmerger.addSource(file);
+            pdfDoc.close();
+        }
+
+        PDFmerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
+
+        return "success";
     }
-
-    for (MultipartFile i : files) {
-      // 파일 업로드 소스 여기에 삽입
-      file = new File(filePath + i.getOriginalFilename());
-      i.transferTo(file);
-      pdfDoc = PDDocument.load(file);
-      PDFmerger.addSource(file);
-      pdfDoc.close();
-    }
-
-    PDFmerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
-
-    return "success";
-  }
 }

@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class BoardController {
 
-  private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-  /**
-   * Simply selects the home view to render by returning its name.
-   */
-  @RequestMapping(value = "/board/board", method = RequestMethod.GET)
-  public String board(HttpServletRequest request, Principal principal, Authentication authentication) {
-    logger.info("Board Controller!");
-    logger.info("getSession:" + request.getSession().toString());
-    logger.info("getAttributeNames:" + request.getAttributeNames());
-    logger.info("principal.getName():" + principal.getName());
-    logger.info("authentication.getPrincipal():" + authentication.getPrincipal());
-    logger.info("authentication.getDetails().toString():" + authentication.getDetails().toString());
-    logger.info("csrf:" + request.getAttribute("_csrf"));
-    return "/board/board";
-  }
+    /**
+     * Simply selects the home view to render by returning its name.
+     */
+    @RequestMapping(value = "/board/board", method = RequestMethod.GET)
+    public String board(HttpServletRequest request, Principal principal, Authentication authentication) {
+        logger.info("Board Controller!");
+        logger.info("getSession:" + request.getSession().toString());
+        logger.info("getAttributeNames:" + request.getAttributeNames());
+        logger.info("principal.getName():" + principal.getName());
+        logger.info("authentication.getPrincipal():" + authentication.getPrincipal());
+        logger.info("authentication.getDetails().toString():" + authentication.getDetails().toString());
+        logger.info("csrf:" + request.getAttribute("_csrf"));
+        return "/board/board";
+    }
 
 }
