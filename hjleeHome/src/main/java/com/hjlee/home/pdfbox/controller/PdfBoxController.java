@@ -28,46 +28,45 @@ import com.hjlee.home.pdfbox.service.PdfBoxService;
 
 @Controller
 public class PdfBoxController {
-    private static final Logger logger = LoggerFactory.getLogger(PdfBoxController.class);
-    @Autowired
-    private Environment env;
+  private static final Logger logger = LoggerFactory.getLogger(PdfBoxController.class);
+  @Autowired
+  private Environment env;
 
-    @Autowired
-    private PdfBoxService pdfService;
+  @Autowired
+  private PdfBoxService pdfService;
 
-    @RequestMapping(value = "/pdfbox/merge", method = RequestMethod.GET)
-    public String toastUiGrid(HttpServletRequest request) {
-        logger.info("PdfBoxController Get");
-        logger.info("===================>" + env.getProperty("file.temp"));
-        return "/dev/pdfbox/pdfBoxMerge";
-    }
+  @RequestMapping(value = "/pdfbox/merge", method = RequestMethod.GET)
+  public String toastUiGrid(HttpServletRequest request) {
+    logger.info("PdfBoxController Get");
+    logger.info("===================>" + env.getProperty("file.temp"));
+    return "/dev/pdfbox/pdfBoxMerge";
+  }
 
-    @RequestMapping(value = "/pdfbox/fileUpload", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-    public ResponseEntity<String> fileUpload(MultipartHttpServletRequest multipartHttpServletRequest)
-            throws IOException {
+  @RequestMapping(value = "/pdfbox/fileUpload", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+  public ResponseEntity<String> fileUpload(MultipartHttpServletRequest multipartHttpServletRequest) throws IOException {
 
-        List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
-        String result = pdfService.pdfMerge(files);
-        // 파일경로
-        /*
-         * String filePath ="C:\\upload\\"; PDDocument pdfDoc = null; PDFMergerUtility
-         * PDFmerger = new PDFMergerUtility();
-         * PDFmerger.setDestinationFileName("C:\\upload\\merge\\test.pdf"); //파일들을
-         * List형식으로 보관
-         * 
-         * 
-         * File file = new File(filePath); //파일이 없다면 디렉토리를 생성 if (file.exists() ==
-         * false) { file.mkdirs(); }
-         * 
-         * for(MultipartFile i:files) { System.out.println(i.getOriginalFilename()
-         * +" 업로드"); //파일 업로드 소스 여기에 삽입 file = new
-         * File(filePath+i.getOriginalFilename()); i.transferTo(file); pdfDoc =
-         * PDDocument.load(file); PDFmerger.addSource(file); pdfDoc.close();
-         * file.delete(); }
-         * 
-         * PDFmerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
-         */
-        return new ResponseEntity("업로드 성공 - " + result, HttpStatus.OK);
-    }
+    List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
+    String result = pdfService.pdfMerge(files);
+    // 파일경로
+    /*
+     * String filePath ="C:\\upload\\"; PDDocument pdfDoc = null; PDFMergerUtility
+     * PDFmerger = new PDFMergerUtility();
+     * PDFmerger.setDestinationFileName("C:\\upload\\merge\\test.pdf"); //파일들을
+     * List형식으로 보관
+     * 
+     * 
+     * File file = new File(filePath); //파일이 없다면 디렉토리를 생성 if (file.exists() ==
+     * false) { file.mkdirs(); }
+     * 
+     * for(MultipartFile i:files) { System.out.println(i.getOriginalFilename()
+     * +" 업로드"); //파일 업로드 소스 여기에 삽입 file = new
+     * File(filePath+i.getOriginalFilename()); i.transferTo(file); pdfDoc =
+     * PDDocument.load(file); PDFmerger.addSource(file); pdfDoc.close();
+     * file.delete(); }
+     * 
+     * PDFmerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
+     */
+    return new ResponseEntity("업로드 성공 - " + result, HttpStatus.OK);
+  }
 
 }

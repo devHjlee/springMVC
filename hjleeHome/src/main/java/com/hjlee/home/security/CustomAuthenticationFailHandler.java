@@ -11,12 +11,12 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 public class CustomAuthenticationFailHandler implements AuthenticationFailureHandler {
 
-    @Override
-    public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse res, AuthenticationException arg2)
-            throws IOException, ServletException {
-        req.setAttribute("loginid", req.getParameter("userId"));
-        req.getRequestDispatcher("/comm/login?error=true").forward(req, res);
-    }
+  @Override
+  public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse res, AuthenticationException arg2)
+      throws IOException, ServletException {
+    req.setAttribute("loginid", req.getParameter("userId"));
+    req.getRequestDispatcher("/comm/login?error=true").forward(req, res);
+  }
 
 }
 //For example, if you receive your request on http://example.com/myapp/subdir,
