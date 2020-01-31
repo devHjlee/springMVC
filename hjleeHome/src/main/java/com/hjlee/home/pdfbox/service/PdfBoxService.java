@@ -22,7 +22,7 @@ public class PdfBoxService {
     private static final Logger logger = LoggerFactory.getLogger(PdfBoxService.class);
 
     public String pdfMerge(List<MultipartFile> files) throws IOException {
-
+        logger.info("pdfMerge Start!");
         String filePath = env.getProperty("file.tempPath");
 
         PDDocument pdfDoc = null;
@@ -37,11 +37,15 @@ public class PdfBoxService {
 
         for (MultipartFile i : files) {
             // 파일 업로드 소스 여기에 삽입
+            try {
             file = new File(filePath + i.getOriginalFilename());
             i.transferTo(file);
             pdfDoc = PDDocument.load(file);
             PDFmerger.addSource(file);
             pdfDoc.close();
+            } catch (IOException e) {
+                throw new IOException(e.getMessage());
+            }
         }
 
         PDFmerger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());

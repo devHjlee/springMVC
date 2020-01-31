@@ -121,8 +121,7 @@
 
 		            var file = evt.target.files[i];
 		            var fileName = evt.target.files[i].name;
-		            var fileId = sectionIdentifier + fileIdCounter;
-
+		            var fileId = sectionIdentifier + fileIdCounter;//files11
 		            if(!validateFileExtension(fileName)){
 		            	alert("PDF 파일이 아닙니다.");
 		            	return false;
@@ -135,7 +134,6 @@
 		            var removeLink = "<a href=\"#\" class=\"removeFile btn btn-danger btn-circle btn-sm\" data-fileid=\"" + fileId + "\"><i class=\"fas fa-trash\"></i></a>";
 		            output.push("<li><strong>", escape(file.name), "</strong> - ", file.size, " bytes. &nbsp; &nbsp; ", removeLink, "</li> ");
 		        };
-
 		        $(this).children(".card-body").append(output.join(""));
 		        //reset the input to null - nice little chrome bug!
 		        evt.target.value = null;
@@ -157,11 +155,7 @@
 		    });
 
 		    this.clear = function () {
-		        for (var i = 0; i < filesToUpload.length; ++i) {
-		            if (filesToUpload[i].id.indexOf(sectionIdentifier) >= 0)
-		                filesToUpload.splice(i, 1);
-		        }
-
+		        filesToUpload.length = 0;
 		        $(this).children(".card-body").empty();
 		    }
 
