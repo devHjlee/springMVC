@@ -18,41 +18,41 @@ import com.hjlee.home.security.service.CustomUserDetailsService;
 import com.hjlee.home.security.vo.CustomUserDetails;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-	
-	private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
-	@Autowired
-	private CustomUserDetailsService userDeSer;
-	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+    private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		
-		String email = (String) authentication.getPrincipal();
-		String password = (String) authentication.getCredentials();
+    @Autowired
+    private CustomUserDetailsService userDeSer;
 
-		CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(email);
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-		if(!user.isEnabled()) {
-			throw new AuthenticationCredentialsNotFoundException("잠긴 사용자 입니다.");
-		}
+    @SuppressWarnings("unchecked")
+    @Override
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
+        String email = (String) authentication.getPrincipal();
+        String password = (String) authentication.getCredentials();
 
-		if(!passwordEncoder.matches(password, user.getPassword())) {
-			throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
-		}
+        CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(email);
 
-		logger.info("userVO:"+user.toString());
-		return new UsernamePasswordAuthenticationToken(user, password, authorities);
-	}
+        if (!user.isEnabled()) {
+            throw new AuthenticationCredentialsNotFoundException("잠긴 사용자 입니다.");
+        }
 
-	@Override
-	public boolean supports(Class<?> authentication) {
-		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
-	}
+        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
+        }
+
+        logger.info("userVO:" + user.toString());
+        return new UsernamePasswordAuthenticationToken(user, password, authorities);
+    }
+
+    @Override
+    public boolean supports(Class<?> authentication) {
+        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
+    }
 
 }
